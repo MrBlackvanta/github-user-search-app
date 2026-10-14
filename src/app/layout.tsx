@@ -20,7 +20,7 @@ const shareImage = {
   url: "/opengraph-image.jpg",
   width: 1200,
   height: 630,
-  alt: "The devfinder search bar above Abdelrhman Abdelaal's GitHub profile card.",
+  alt: "devfinder, GitHub profile search: the dark theme's search bar above Abdelrhman Abdelaal's profile card.",
 };
 
 export const metadata: Metadata = {

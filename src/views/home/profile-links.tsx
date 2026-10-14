@@ -25,7 +25,7 @@ export default function ProfileLinks({
   ];
 
   return (
-    <dl className="mt-6 grid grid-cols-1 gap-4 md:mt-7 md:grid-flow-col md:grid-cols-2 md:grid-rows-2 md:gap-x-12 lg:mt-9 lg:gap-x-14">
+    <dl className="mt-6 grid grid-cols-1 gap-4 md:mt-7 md:grid-flow-col md:grid-cols-[14.0625rem_minmax(0,1fr)] md:grid-rows-2 md:gap-x-12 lg:mt-9">
       {details.map(({ label, Icon, detail }) => (
         <div
           key={label}
