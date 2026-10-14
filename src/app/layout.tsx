@@ -1,5 +1,6 @@
 import { Signature } from "@/components/layout";
 import { SITE_URL } from "@/data";
+import { applyStoredTheme } from "@/lib/theme";
 import type { Metadata, Viewport } from "next";
 import { Space_Mono } from "next/font/google";
 import "./globals.css";
@@ -48,10 +49,6 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f6f8ff" },
-    { media: "(prefers-color-scheme: dark)", color: "#141d2f" },
-  ],
 };
 
 export default function RootLayout({
@@ -61,8 +58,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${spaceMono.variable} antialiased`}>
-      <body className="relative flex min-h-dvh flex-col">
-        {children}
+      <body className="relative min-h-dvh px-6 pt-8 pb-20 md:pt-35 lg:pt-36">
+        <script dangerouslySetInnerHTML={{ __html: applyStoredTheme }} />
+        <div className="mx-auto max-w-xl lg:max-w-182.5">{children}</div>
         <Signature />
       </body>
     </html>

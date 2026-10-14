@@ -1,7 +1,10 @@
+import { SiteHeader } from "@/components/layout";
+
 export default function Home() {
   return (
-    <main className="grow">
-      <h1 className="sr-only">devfinder</h1>
-    </main>
+    <>
+      <SiteHeader logoAs="h1" />
+      <main />
+    </>
   );
 }
