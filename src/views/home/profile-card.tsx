@@ -25,7 +25,7 @@ export default function ProfileCard({ profile, busy }: ProfileCardProps) {
         fetchPriority="high"
         className="size-17.5 rounded-full md:size-29.25 lg:row-span-2"
       />
-      <div className="flex flex-col lg:-mt-1 lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-x-4">
+      <div className="flex flex-col lg:-mt-1 lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-x-3">
         <h2
           id={nameId}
           className="text-ink md:text-title font-bold wrap-break-word"

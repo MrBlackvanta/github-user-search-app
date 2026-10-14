@@ -1,5 +1,5 @@
 import { SiteHeader } from "@/components/layout";
-import { octocat } from "@/data";
+import { defaultUser } from "@/data";
 import { toProfile } from "@/lib/github";
 import { UserSearch } from "@/views/home";
 import { preconnect } from "react-dom";
@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <SiteHeader logoAs="h1" />
       <main>
-        <UserSearch initialProfile={toProfile(octocat)} />
+        <UserSearch initialProfile={toProfile(defaultUser)} />
       </main>
     </>
   );

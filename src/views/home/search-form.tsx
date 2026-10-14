@@ -60,10 +60,7 @@ export default function SearchForm({
           {FAILURE_MESSAGES[failure]}
         </p>
       )}
-      <button
-        type="submit"
-        className="bg-accent hover:bg-accent-hover rounded-inner h-11.5 shrink-0 px-4 text-sm font-bold text-white transition-[background-color] ease-out md:h-12.5 md:px-6 md:text-base"
-      >
+      <button type="submit" className="v-button shrink-0">
         Search
       </button>
     </form>

@@ -1,5 +1,5 @@
 import { Signature } from "@/components/layout";
-import { SITE_URL } from "@/data";
+import { SITE_NAME, SITE_URL } from "@/data";
 import { applyStoredTheme } from "@/lib/theme";
 import type { Metadata, Viewport } from "next";
 import { Space_Mono } from "next/font/google";
@@ -12,8 +12,7 @@ const spaceMono = Space_Mono({
   display: "swap",
 });
 
-const name = "devfinder";
-const title = `${name} | GitHub profile search`;
+const title = `${SITE_NAME} | GitHub profile search`;
 const description =
   "Look up any GitHub user by username and see their profile at a glance: bio, repos, followers, location and links, in light or dark.";
 
@@ -21,7 +20,7 @@ const shareImage = {
   url: "/opengraph-image.jpg",
   width: 1200,
   height: 630,
-  alt: "The devfinder search bar above the Octocat's GitHub profile card.",
+  alt: "The devfinder search bar above Abdelrhman Abdelaal's GitHub profile card.",
 };
 
 export const metadata: Metadata = {
@@ -33,7 +32,7 @@ export const metadata: Metadata = {
     title,
     description,
     url: "/",
-    siteName: name,
+    siteName: SITE_NAME,
     locale: "en_US",
     type: "website",
     images: [shareImage],

@@ -1,2 +1,2 @@
-export { default as octocat } from "./octocat.json";
+export { default as defaultUser } from "./default-user.json";
 export * from "./site";
