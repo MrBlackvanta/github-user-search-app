@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@source not "../../*.md";
+@source not "../**/*.test.ts";
+@source not "../**/*.test.tsx";
+@source not "../test";
+
+@theme {
+  --font-mono: var(--font-space-mono), ui-monospace, monospace;
+
+  --color-page: #f6f8ff;
+  --color-ink: #2b3442;
+  --color-muted: #4b6a9b;
+}
+
+@layer base {
+  html {
+    overflow-y: scroll;
+  }
+
+  body {
+    @apply bg-page text-ink font-mono;
+  }
+
+  button:not(:disabled) {
+    @apply cursor-pointer;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-current;
+  }
+}
