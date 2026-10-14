@@ -46,6 +46,16 @@
   --color-toggle-hover: var(--toggle-hover);
 }
 
+@utility v-link {
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 150ms var(--ease-out);
+
+  @variant hover {
+    text-decoration-color: currentColor;
+  }
+}
+
 @layer base {
   :root {
     color-scheme: light;
