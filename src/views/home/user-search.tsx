@@ -68,6 +68,7 @@ export default function UserSearch({ initialProfile }: UserSearchProps) {
       <SearchForm
         failure={failure}
         failureKey={state.attempt}
+        pending={isPending}
         onSubmit={handleSubmit}
         onQueryChange={() => setDismissedAttempt(state.attempt)}
       />

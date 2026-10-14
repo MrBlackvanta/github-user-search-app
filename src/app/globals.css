@@ -60,6 +60,31 @@
   @apply bg-accent hover:bg-accent-hover rounded-inner inline-flex h-11.5 items-center px-4 text-sm font-bold text-white transition-[background-color] ease-out md:h-12.5 md:px-6 md:text-base;
 }
 
+@utility v-reveal {
+  transition-property: opacity, translate, display;
+  transition-duration: 200ms;
+  transition-timing-function: var(--ease-out);
+  transition-behavior: allow-discrete;
+
+  &[hidden] {
+    opacity: 0;
+  }
+
+  @starting-style {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &[hidden] {
+      translate: 0.5rem 0;
+    }
+
+    @starting-style {
+      translate: 0.5rem 0;
+    }
+  }
+}
+
 @utility v-search-bar {
   &:has(input:focus-visible) {
     background-color: var(--field-focus);
@@ -118,5 +143,38 @@
 
   :focus-visible {
     @apply outline-accent outline-2 outline-offset-2;
+  }
+}
+
+[data-sweep]::view-transition-old(root),
+[data-sweep]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+[data-sweep="in"]::view-transition-new(root) {
+  animation: v-sweep-open 500ms ease-in-out forwards;
+}
+
+[data-sweep="out"]::view-transition-old(root) {
+  z-index: 1;
+  animation: v-sweep-close 500ms ease-in-out forwards;
+}
+
+@keyframes v-sweep-open {
+  from {
+    clip-path: circle(0% at var(--sweep-x) var(--sweep-y));
+  }
+  to {
+    clip-path: circle(var(--sweep-r) at var(--sweep-x) var(--sweep-y));
+  }
+}
+
+@keyframes v-sweep-close {
+  from {
+    clip-path: circle(var(--sweep-r) at var(--sweep-x) var(--sweep-y));
+  }
+  to {
+    clip-path: circle(0% at var(--sweep-x) var(--sweep-y));
   }
 }

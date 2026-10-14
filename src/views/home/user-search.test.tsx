@@ -156,6 +156,23 @@ describe("UserSearch", () => {
     expect(screen.getByRole("article", { name: "The Octocat" })).toBeVisible();
   });
 
+  it("takes the error down when a retry succeeds", async () => {
+    vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(new Response(null, { status: 403 }))
+      .mockResolvedValueOnce(Response.json(mona));
+    const user = renderSearch();
+    await user.type(field(), "mona{Enter}");
+    await screen.findByRole("alert");
+
+    await user.click(searchButton());
+
+    expect(
+      await screen.findByRole("article", { name: "Mona Lisa" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    expect(field()).not.toHaveAttribute("aria-invalid");
+  });
+
   it.each(["", "   ", "@"])(
     "does nothing for the empty query %j",
     async (query) => {
@@ -193,6 +210,7 @@ describe("UserSearch", () => {
 
     const card = screen.getByRole("article", { name: "The Octocat" });
     await waitFor(() => expect(card).toHaveAttribute("aria-busy", "true"));
+    expect(searchButton()).toBeEnabled();
 
     reply.resolve(Response.json(mona));
 
