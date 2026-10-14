@@ -56,6 +56,13 @@
   }
 }
 
+@utility v-search-bar {
+  &:has(input:focus-visible) {
+    background-color: var(--field-focus);
+    box-shadow: var(--field-glow);
+  }
+}
+
 @layer base {
   :root {
     color-scheme: light;
@@ -71,6 +78,8 @@
     --handle: #006ff5;
     --danger: #e12d34;
     --toggle-hover: #222731;
+    --field-focus: color-mix(in srgb, var(--color-accent) 10%, var(--card));
+    --field-glow: var(--shadow-card), 0 0 12px rgb(0 111 245 / 0.35);
   }
 
   [data-theme="dark"] {
@@ -87,6 +96,8 @@
     --handle: #2b92ff;
     --danger: #ff5552;
     --toggle-hover: #90a4d4;
+    --field-focus: color-mix(in srgb, white 6%, var(--card));
+    --field-glow: 0 0 12px rgb(43 146 255 / 0.45);
   }
 
   html {

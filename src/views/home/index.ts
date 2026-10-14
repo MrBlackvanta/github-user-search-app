@@ -1,1 +1,1 @@
-export { default as ProfileCard } from "./profile-card";
+export { default as UserSearch } from "./user-search";

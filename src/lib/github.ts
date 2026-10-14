@@ -32,6 +32,14 @@ export type Profile = {
   company: ProfileDetail;
 };
 
+export type SearchFailure = "not-found" | "unavailable";
+
+export type SearchResult =
+  { status: "found"; profile: Profile } | { status: SearchFailure };
+
+const USERS_API = "https://api.github.com/users";
+const REQUEST_TIMEOUT = 10_000;
+const POSSIBLE_USERNAME = /^[a-z\d-]{1,39}$/i;
 const ORG_HANDLE = /^@([a-z\d-]+)$/i;
 const HAS_SCHEME = /^https?:\/\//i;
 
@@ -79,4 +87,29 @@ export function toProfile(user: GitHubUser): Profile {
     twitter: toTwitter(user.twitter_username),
     company: toCompany(user.company),
   };
+}
+
+export function toUsername(query: string) {
+  return query.trim().replace(/^@/, "");
+}
+
+export async function fetchProfile(
+  username: string,
+  signal: AbortSignal,
+): Promise<SearchResult> {
+  if (!POSSIBLE_USERNAME.test(username)) return { status: "not-found" };
+
+  try {
+    const response = await fetch(`${USERS_API}/${username}`, {
+      headers: { Accept: "application/vnd.github+json" },
+      signal: AbortSignal.any([signal, AbortSignal.timeout(REQUEST_TIMEOUT)]),
+    });
+    if (response.status === 404) return { status: "not-found" };
+    if (!response.ok) return { status: "unavailable" };
+
+    const user: GitHubUser = await response.json();
+    return { status: "found", profile: toProfile(user) };
+  } catch {
+    return { status: "unavailable" };
+  }
 }

@@ -4,14 +4,15 @@ import { useId } from "react";
 import ProfileLinks from "./profile-links";
 import ProfileStats from "./profile-stats";
 
-type ProfileCardProps = { profile: Profile };
+type ProfileCardProps = { profile: Profile; busy?: boolean };
 
-export default function ProfileCard({ profile }: ProfileCardProps) {
+export default function ProfileCard({ profile, busy }: ProfileCardProps) {
   const nameId = useId();
 
   return (
     <article
       aria-labelledby={nameId}
+      aria-busy={busy}
       className="bg-card rounded-card shadow-card grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-5 px-6 pt-8 pb-12 md:gap-x-10 md:p-10 lg:items-start lg:gap-x-9 lg:p-12 dark:shadow-none"
     >
       <img
