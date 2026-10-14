@@ -4,15 +4,81 @@
 @source not "../**/*.test.tsx";
 @source not "../test";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
   --font-mono: var(--font-space-mono), ui-monospace, monospace;
 
-  --color-page: #f6f8ff;
-  --color-ink: #2b3442;
-  --color-muted: #4b6a9b;
+  --text-title: 1.625rem;
+  --text-title--line-height: 2.375rem;
+  --text-stat: 1.375rem;
+  --text-field: 1.125rem;
+  --text-field--line-height: 1.5625rem;
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.5625rem;
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.25rem;
+  --text-caption: 0.6875rem;
+  --text-caption--line-height: 1rem;
+
+  --tracking-toggle: 0.1923em;
+
+  --radius-card: 0.9375rem;
+  --radius-inner: 0.625rem;
+
+  --shadow-card: 0 16px 30px -10px rgb(70 96 187 / 0.2);
+
+  --color-accent: #006ff5;
+  --color-accent-hover: #60abff;
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-strong: var(--ink-strong);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-faded: var(--faded);
+  --color-faint: var(--faint);
+  --color-handle: var(--handle);
+  --color-danger: var(--danger);
+  --color-toggle-hover: var(--toggle-hover);
 }
 
 @layer base {
+  :root {
+    color-scheme: light;
+
+    --page: #f6f8ff;
+    --card: #fefefe;
+    --ink: #2b3442;
+    --ink-strong: #222731;
+    --muted: #4b6a9b;
+    --subtle: #647795;
+    --faded: rgb(75 106 155 / 0.91);
+    --faint: rgb(75 106 155 / 0.91);
+    --handle: #006ff5;
+    --danger: #e12d34;
+    --toggle-hover: #222731;
+  }
+
+  [data-theme="dark"] {
+    color-scheme: dark;
+
+    --page: #141d2f;
+    --card: #1e2a47;
+    --ink: #ffffff;
+    --ink-strong: #ffffff;
+    --muted: #ffffff;
+    --subtle: #ffffff;
+    --faded: rgb(255 255 255 / 0.75);
+    --faint: rgb(255 255 255 / 0.5);
+    --handle: #2b92ff;
+    --danger: #ff5552;
+    --toggle-hover: #90a4d4;
+  }
+
   html {
     overflow-y: scroll;
   }
@@ -26,6 +92,6 @@
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-current;
+    @apply outline-accent outline-2 outline-offset-2;
   }
 }
